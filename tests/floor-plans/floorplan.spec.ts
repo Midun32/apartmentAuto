@@ -1,11 +1,14 @@
 import { test, expect } from '@playwright/test';
 import { FloorPlansPage } from '../../pages/FloorPlansPage';
+import { HomePage } from '../../pages/HomePage';
 
 test.describe('FloorPlanpage', () => {
   let floorPlanPage: FloorPlansPage;
+  let homePage: HomePage;
 
   test.beforeEach(async ({ page }) => {
     floorPlanPage = new FloorPlansPage(page);
+    homePage = new HomePage(page);
     
 
     const cookieButton = page.locator('#onetrust-accept-btn-handler, button:has-text("Accept All"), button:has-text("Accept all"), #onetrust-close-btn-container');
@@ -38,6 +41,29 @@ test.describe('FloorPlanpage', () => {
     await expect(dropdownMenu).toContainText('1 Bedroom');
     await expect(dropdownMenu).toContainText('2 Bedrooms');
     await expect(dropdownMenu).toContainText('3 Bedrooms');
+  });
+
+  test('FP-002 — Verify Floor Plan Cards Are Displayed', async ({ page }) => {
+    await floorPlanPage.navigateToFloorPlanPage();
+    await floorPlanPage.verifyFloorPlanVisibility();
+  });
+
+  test('FP-003 — Individual can perform virtual tour of Floor Plan', async ({ page }) => {
+    await floorPlanPage.navigateToFloorPlanPage();
+    await floorPlanPage.verifyFloorPlanVisibility();
+    await floorPlanPage.verifyGuidedTourBtn();
+    await floorPlanPage.verifyApplyNowBtn();
+    await floorPlanPage.verify360Btn();
+    await floorPlanPage.verifyVirtualTourBtn();
+    await homePage.closeCookies();
+    await homePage.closeComplementary();
+    await floorPlanPage.clickVirtualTourBtn();
+    await floorPlanPage.verifyVirtualTourModal();
+    await floorPlanPage.viewModalTour();
+    await floorPlanPage.navigateToLivingRoom();
+    await floorPlanPage.navigateToBedroom();
+    await floorPlanPage.closeModal();
+    await floorPlanPage.verifyFloorPlanVisibility();
   });
 
 });

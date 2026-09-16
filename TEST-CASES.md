@@ -157,7 +157,7 @@ The homepage remains usable at supported desktop and mobile viewport sizes.
 
 The available bedroom categories are visible to the user.
 
----done
+---
 
 ## FP-002 — Verify Floor Plan Cards Are Displayed
 
@@ -169,7 +169,7 @@ The available bedroom categories are visible to the user.
 
 1. Open the Floor Plans page.
 2. Locate the floor-plan results.
-3. Verify floor-plan cards or equivalent results are displayed.
+3. Verify floor-plan cards are displayed.
 
 ### Expected Result
 
@@ -177,32 +177,7 @@ Available floor plans are displayed with meaningful identifying information.
 
 ---
 
-## FP-003 — Verify Floor Plan Information
-
-**Priority:** P1
-**Type:** Functional / Data Validation
-**Automation:** Yes
-
-### Steps
-
-1. Open the Floor Plans page.
-2. Select a floor plan.
-3. Verify the floor-plan details.
-
-### Expected Result
-
-The selected floor plan displays the appropriate information, such as:
-
-* Floor-plan name
-* Bedroom count
-* Bathroom count
-* Square footage
-* Pricing information where available
-* Availability information where available
-
----
-
-## FP-004 — Open Individual Floor Plan
+## FP-003 — Individual can perform virtual tour of Floor Plan
 
 **Priority:** P1
 **Type:** Functional
@@ -212,13 +187,20 @@ The selected floor plan displays the appropriate information, such as:
 
 1. Open the Floor Plans page.
 2. Select an individual floor plan.
-3. Wait for navigation or page content to load.
+3. Verify user can see 360 tour button.
+4. Verify user can see Virtual tour button.
+5. Verify user can see Apply now button.
+6. Verify user can see Guided Tour button.
+7. User clicks on Virtual tour button and is navigated to tour page.
+8. User is able to naviagte to living room virtually.
+9. User is able to naviagte to bedroom virtually.
+10. Then user can exit virtual tour safely.
 
 ### Expected Result
 
 The corresponding floor-plan detail page opens successfully.
 
----
+---done
 
 # 5. Apartment Test Cases
 
