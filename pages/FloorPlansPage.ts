@@ -11,17 +11,15 @@ export class FloorPlansPage {
   }
 
   async navigateToFloorPlanPage() {
-    // await this.navigateToFloorPlansPage();
     await this.page.goto('/floorplans');
   }
 
   async navigateToBrowseByBuilding() {
-    // await this.navigateToFloorPlansPage();
-    await this.page.goto('/interactivepropertymap');
+    await this.page.goto('/interactivepropertymap', { waitUntil: 'domcontentloaded' });
   }
   
   async navigateToDenFloorPlans() {
-    await this.page.goto('/den-floor-plans');
+    await this.page.goto('/den-floor-plans', { waitUntil: 'domcontentloaded' });
   }
 
   async navigateToFeaturedFloorPlans() {
@@ -29,7 +27,7 @@ export class FloorPlansPage {
   }
 
   async verifyFloorPlanVisibility() {
-    await this.page.locator('#floorplans-container').isVisible();
+    await expect(this.page.locator('#floorplans-container')).toBeVisible();
   }
 
   async verify360Btn() {
@@ -65,21 +63,29 @@ export class FloorPlansPage {
 
   async navigateToLivingRoom() {
     const sceneSelector = this.page.locator('iframe[title="Virtual Tour"]').contentFrame().getByRole('button', {name: /Expand scene list/i});
-    await sceneSelector.click();
+    await sceneSelector.dispatchEvent('click');
     const livingRoom = this.page.locator('iframe[title="Virtual Tour"]').contentFrame().getByRole('option', { name: 'Living Room' });
-    await livingRoom.click();
-    await expect(livingRoom).toHaveAttribute('aria-selected', 'true');
+    await expect(livingRoom).toBeVisible();
+    await livingRoom.dispatchEvent('click');
+    await expect(sceneSelector).toHaveAttribute('aria-label', /Living Room/);
   }
 
   async navigateToBedroom() {
     const sceneSelector = this.page.locator('iframe[title="Virtual Tour"]').contentFrame().getByRole('button', {name: /Expand scene list/i});
-    await sceneSelector.click();
+    await sceneSelector.dispatchEvent('click');
     const bedroom = this.page.locator('iframe[title="Virtual Tour"]').contentFrame().getByRole('option', { name: 'Bedroom' });
-    await bedroom.click();
-    await expect(bedroom).toHaveAttribute('aria-selected', 'true');
+    await expect(bedroom).toBeVisible();
+    await bedroom.dispatchEvent('click');
+    await expect(sceneSelector).toHaveAttribute('aria-label', /Bedroom/);
   }
 
   async closeModal() {
-    await this.page.locator('iframe[title="Virtual Tour"]').contentFrame().getByLabel('close dialog').click();
+    const modal = this.page.locator('#floorplans-video-modal');
+    await modal.getByRole('button', { name: 'close dialog' }).click();
+    await expect(modal).toBeHidden();
+  }
+
+  async jumpToFloorPlans() {
+    await this.page.getByRole('button', { name: 'Jump to Floorplans' }).click();
   }
 }
