@@ -1,10 +1,10 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 
 export class HomePage {
   constructor(private page: Page) {}
 
   async navigate() {
-    await this.page.goto('/');
+    await this.page.goto('/', { waitUntil: 'domcontentloaded' });
   }
 
   async clickMenu() {
@@ -17,5 +17,14 @@ export class HomePage {
 
   async closeComplementary() {
      await this.page.getByRole('complementary').locator('[aria-label="close dialog"]').click();
+  }
+
+  async checkAccessibility() {
+    await this.page.getByRole('button', { name: 'Open Accessibility Options' }).click();
+    await expect(this.page.locator('#acsModalTitle')).toBeVisible();
+
+    const monochromeButton = this.page.getByRole('button', {name: 'Monochrome'});
+    await monochromeButton.click();
+    await expect(monochromeButton).toHaveAttribute('aria-pressed','true');
   }
 }

@@ -52,4 +52,11 @@ test.describe('Homepage', () => {
     });
   }
 
+  test('A11Y-001 — Homepage Accessibility Scan', async ({ page }) => {
+    await homePage.navigate();
+    await homePage.closeCookies();
+    await homePage.closeComplementary();
+    await homePage.checkAccessibility();
+  });
+
 });
