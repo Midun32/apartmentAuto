@@ -200,11 +200,11 @@ Available floor plans are displayed with meaningful identifying information.
 
 The corresponding floor-plan detail page opens successfully.
 
----done
+---
 
 # 5. Apartment Test Cases
 
-## APT-004 — Verify Unit Location CTA
+## APT-001 — Verify Unit Location CTA
 
 **Priority:** P1
 **Type:** Functional
@@ -212,13 +212,13 @@ The corresponding floor-plan detail page opens successfully.
 
 ### Steps
 
-1. Open an apartment/floor-plan page.
-2. Locate the View Location functionality.
+1. Open a floor-plan page.
+2. Locate the View Location functionality for an apartment.
 3. Select View Location.
 
 ### Expected Result
 
-The user is taken to the appropriate property location/map experience.
+The user is taken to the appropriate property location.
 
 ---
 
@@ -226,25 +226,7 @@ The user is taken to the appropriate property location/map experience.
 
 ---
 
-## MAP-001 — Verify Interactive Map Loads
-
-**Priority:** P1
-**Type:** Functional / Smoke
-**Automation:** Yes
-
-### Steps
-
-1. Navigate to the interactive property map.
-2. Wait for the map to load.
-3. Verify the primary map interface is visible.
-
-### Expected Result
-
-The interactive property map loads successfully.
-
----
-
-## MAP-002 — Verify Map Is Interactive
+## MAP-001 — Verify Map Is Interactive
 
 **Priority:** P1
 **Type:** Functional
@@ -252,9 +234,12 @@ The interactive property map loads successfully.
 
 ### Steps
 
-1. Open the interactive map.
-2. Select an available building/unit or interactive map element.
-3. Observe the resulting content.
+1. Navigate to the interactive property map page.
+2. Verify the primary map interface is visible.
+3. Open the interactive map.
+4. Select a floor in the map.
+5. Select an available on the interactive map element.
+6. Verify user can see apply button.
 
 ### Expected Result
 
@@ -262,171 +247,11 @@ The selected map element responds to user interaction.
 
 ---
 
-## MAP-004 — Verify Bedroom and Bathroom Information on Map
-
-**Priority:** P1
-**Type:** Data Validation
-**Automation:** Yes
-
-### Steps
-
-1. Select an apartment/unit on the map.
-2. Locate bedroom and bathroom information.
-3. Verify both values are displayed.
-
-### Expected Result
-
-Bedroom and bathroom information is displayed correctly.
-
----
-
-## MAP-005 — Verify Floor Information on Map
-
-**Priority:** P2
-**Type:** Data Validation
-**Automation:** Yes
-
-### Steps
-
-1. Select an apartment/unit on the interactive map.
-2. Locate the floor information.
-
-### Expected Result
-
-The appropriate floor information is displayed.
-
----
-
-## MAP-006 — Verify Availability on Map
-
-**Priority:** P1
-**Type:** Data Validation
-**Automation:** Yes
-
-### Steps
-
-1. Select an available apartment/unit.
-2. Locate availability information.
-3. Verify availability is displayed.
-
-### Expected Result
-
-Availability information is displayed for the selected unit where applicable.
-
----
-
-## MAP-007 — Verify Map Data Matches Floor Plan Data
-
-**Priority:** P1
-**Type:** End-to-End / Data Consistency
-**Automation:** Yes
-
-### Steps
-
-1. Open a floor-plan page.
-2. Select an available apartment/unit.
-3. Record:
-
-   * Apartment/unit number
-   * Bedroom count
-   * Bathroom count
-   * Floor
-   * Availability
-   * Price where available
-4. Open the interactive property map.
-5. Locate the same apartment/unit.
-6. Compare the displayed information.
-
-### Expected Result
-
-The apartment/unit information displayed on the floor-plan experience matches the corresponding information on the interactive property map.
-
-### Why This Test Matters
-
-This validates **data consistency across separate user experiences**, not simply whether a button works.
-
----
-
-# 7. Virtual Tour Test Cases
-
----
-
-## TOUR-002 — Verify Virtual Tour Opens
-
-**Priority:** P2
-**Type:** Functional
-**Automation:** Yes
-
-### Steps
-
-1. Select the virtual tour CTA.
-2. Wait for the tour interface to load.
-
-### Expected Result
-
-The virtual tour opens successfully.
-
---
-
-## TOUR-004 — Verify Virtual Tour Can Be Closed
-
-**Priority:** P2
-**Type:** Functional
-**Automation:** Yes
-
-### Steps
-
-1. Open the virtual tour.
-2. Locate the close control.
-3. Close the tour.
-
-### Expected Result
-
-The tour closes and the user returns to the underlying page.
-
----
-
 # 8. Schedule Tour Test Cases
 
 ---
 
-## SCHED-001 — Open Schedule Tour
-
-**Priority:** P1
-**Type:** Functional
-**Automation:** Yes
-
-### Steps
-
-1. Open the homepage.
-2. Select Schedule Tour.
-3. Wait for the schedule experience to load.
-
-### Expected Result
-
-The Schedule Tour experience loads successfully.
-
----
-
-## SCHED-002 — Verify Required Fields
-
-**Priority:** P1
-**Type:** Functional
-**Automation:** Yes
-
-### Steps
-
-1. Open the Schedule Tour form.
-2. Review the form fields.
-3. Identify required fields.
-
-### Expected Result
-
-Required fields are displayed and identifiable.
-
----
-
-## SCHED-003 — Validate Empty Required Fields
+## SCHED-001 — Validate Empty Required Fields
 
 **Priority:** P1
 **Type:** Negative
@@ -434,9 +259,13 @@ Required fields are displayed and identifiable.
 
 ### Steps
 
-1. Open the Schedule Tour form.
-2. Leave required fields empty.
-3. Attempt to continue/submit where safe to do so.
+1. User goes to schedule tour page.
+2. Then selects a date.
+3. Then selects a time.
+4. And clicks on confirm button.
+5. The user is taken to the information modal and leaves required fields empty.
+6. Attempt to submit where safe to do so.
+7. User is prohibited from submitting without inputting reqiured fields.
 
 ### Expected Result
 
@@ -444,57 +273,7 @@ The form prevents progression and displays appropriate validation messages.
 
 ---
 
-## SCHED-004 — Validate Invalid Email
-
-**Priority:** P1
-**Type:** Negative
-**Automation:** Yes
-
-### Test Data
-
-```text
-invalid-email
-test@
-example
-```
-
-### Steps
-
-1. Open the Schedule Tour form.
-2. Enter invalid email data.
-3. Complete other required fields with non-sensitive test values.
-4. Attempt to continue where safe.
-
-### Expected Result
-
-The email field is rejected and an appropriate validation message is displayed.
-
----
-
-# 10. Navigation Test Cases
-
----
-
-## NAV-001 — Verify Main Navigation Links
-
-**Priority:** P1
-**Type:** Functional
-**Automation:** Yes
-
-### Steps
-
-1. Open the homepage.
-2. Identify each primary navigation link.
-3. Select each link individually.
-4. Verify the resulting destination.
-
-### Expected Result
-
-Each primary navigation item routes the user to the correct destination.
-
----
-
-# 11. Accessibility Test Cases
+# 9. Accessibility Test Cases
 
 ---
 
@@ -517,106 +296,7 @@ No critical or serious automated accessibility violations are present.
 
 ---
 
-## A11Y-004 — Keyboard Navigation
-
-**Priority:** P2
-**Type:** Accessibility
-**Automation:** Partial
-
-### Steps
-
-1. Navigate to a critical page.
-2. Use keyboard navigation without relying on a mouse.
-3. Move through interactive elements using Tab/Shift+Tab.
-4. Verify focus is visible.
-
-### Expected Result
-
-Critical interactive elements can be reached and operated using keyboard navigation where expected.
-
----
-
-# 13. End-to-End Customer Journey
-
----
-
-## E2E-001 — Prospective Resident Apartment Search
-
-**Priority:** P0
-**Type:** End-to-End / Critical User Journey
-**Automation:** Yes
-
-### Preconditions
-
-The website is available.
-
-### Steps
-
-1. Navigate to the Preston Ridge homepage.
-2. Navigate to Floor Plans.
-3. Select a bedroom category.
-4. Select a floor plan.
-5. Review apartment details.
-6. Locate available units.
-7. Select an available unit where applicable.
-8. Navigate to the unit location.
-9. Interact with the property map.
-10. Verify apartment/unit information.
-11. Open a virtual tour where available.
-12. Return to the apartment/floor-plan experience.
-13. Navigate toward Schedule Tour or the application entry point.
-14. Stop before submitting any real-world form/application.
-
-### Expected Result
-
-The user can progress through the primary apartment-search journey without encountering unexpected navigation, broken functionality, or inconsistent information.
-
----
-
-# 14. Data Consistency Test Cases
-
----
-
-## DATA-001 — Floor Plan vs Apartment Data
-
-**Priority:** P1
-**Type:** Data Consistency
-**Automation:** Yes
-
-### Steps
-
-1. Open a floor-plan page.
-2. Capture the displayed floor-plan information.
-3. Open an associated apartment/unit.
-4. Compare applicable values.
-
-### Expected Result
-
-Information remains consistent between the floor-plan and apartment experiences.
-
----
-
-## DATA-002 — Apartment vs Interactive Map Data
-
-**Priority:** P1
-**Type:** Data Consistency
-**Automation:** Yes
-
-### Steps
-
-1. Select an available apartment/unit.
-2. Capture the apartment/unit details.
-3. Open the interactive property map.
-4. Locate the same apartment/unit.
-5. Compare applicable information.
-
-### Expected Result
-
-Information is consistent between the apartment details and interactive map.
-
----
-
-# 16. Test Execution Matrix
+# 10. Test Execution Matrix
 
 | Test Area         | Smoke | Regression | Cross-Browser | Accessibility | Visual |
 | ----------------- | ----: | ---------: | ------------: | ------------: | -----: |
@@ -639,7 +319,7 @@ The goal is to establish a stable foundation before expanding coverage.
 
 ---
 
-# 20. Notes
+# 11. Notes
 
 These test cases are designed for a live third-party application.
 
@@ -657,7 +337,7 @@ Where a test requires a final real-world submission, validation should stop befo
 
 ---
 
-# 21. Definition of a High-Quality Automated Test
+# 12. Definition of a High-Quality Automated Test
 
 Each automated test should:
 
